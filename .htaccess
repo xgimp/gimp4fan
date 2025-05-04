@@ -11,3 +11,11 @@ RewriteRule ^index\.html$ / [R=301,L]
 
 # Remove "index.html"
 RewriteRule (.*)index\.html$ /$1 [R=301,L]
+
+# HTTPS redirect
+# https://www.endora.cz/podpora/napoveda/3-technicke-ftp-mysql/157-jak-mam-spustit-svuj-web-jen-na-https
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTP_USER_AGENT} !(BlackBerry)
+RewriteCond %{HTTP_USER_AGENT} !(Windows\sNT\s5\.[12])
+RewriteCond %{HTTP_HOST} ^(www\.)?gimp.4fan.cz
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L]
