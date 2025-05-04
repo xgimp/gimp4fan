@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Alternate default index page
+DirectoryIndex index/index.html index.html
+
+# Redirect /index/index.html to /index.html
+RewriteRule ^index/index\.html$ /index.html [R=301,L]
+
+# Redirect /index.html to /
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Remove "index.html"
+RewriteRule (.*)index\.html$ /$1 [R=301,L]
